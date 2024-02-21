@@ -1,20 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My intro website</title>
+    <link rel="icon" href="image/dogIcon.jpg" type="image">
+    <title>Sinh viên</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
 </head>
- <body>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADgCAMAAADCMfHtAAAAgVBMVEUjHyD///8AAAAgGxzb29v8/PwlHiAwLC329vasrKwPCAoZFBVnZ2fj4+PMzMyDf4CXl5cVFhXt6uvBwcGUkJGLi4t8e3u7u7tQTk9JRUY3NzciHh0JCAgdFhmDg4MWERKkoaLU1dWmpqZYWFixsbEoJiabm5ssLCwYEBJwb3AMAAWM/klqAAAEWElEQVR4nO3dbUOqMACGYdyUTILEtzqBklaW/v8feJJtKNtoaMyBPfenI07kOlYTDPI8hBBCCCGEEEIIIYQQQgghhBBCCCGEEEKos9HgUJZRsSALDImB4jbVr7gtBc8PrLeYLYgfDO2SfJwfvIlHBj+s333kvcdak/w2jXumPvIXzScRvz0lTgWmyD3fzohvZzowCT0unPLbT50R+vmCukIPwrb0p4RsQU0h7aIwnwVoPSGlSWeFsVHIZovuCQvYwEBU7u6K8PIgdByEEELovkaErH07d4UbEA5D1jp1jdHWgFA0aedXK4QQQui+Gxbu+Sy24dtn3C00jmiZMHt9YoV8+/qLFUuGTPkd4469hiSUti8iafbdiMjCDTksz8i/rgn7ipDdoRyn2bA7gmcI2y+sOF4KYYeE7I5bFqajQ8rP0lfCltf4Wboflar9uSIVj7Aq/J4PHw8t5OOl0SJf/jgzCYd8YNFzXeLdij/iw6awqoHmXzUb19wlpsU3wF2DhwlqC3/R7FzhoGvCeU3hssNC3/fNm+JDCKFDIVkul/SkdggHYTg5Fobh8GLh9uVfOf32X11IpIwzfe2GnhZwdSGlyUneyLhvX19Itd+V1xd6p8DbFJaCEMI2Cw8zWJKkDQpjquu4c21XKPaNCmGQHfZJUzKWRpy9E3UUpulIV7FzbUe4/Xw59LmThGTKJ30x44dJPvDl4+K3AINJVVaFM5J/qYweZOFa2r6QDaTk8jc5xv8CK8IxOziSKcJIevqQH2iCEEIIGxfyw0WqcH0rwjnfSRLCXrWQ1zVhfxrlve8WLP4kwcOi3IqNi6aXT/luhKKI8HcY4kmyijceFrMt/PmgkfmTGQghhBBCs1C/88ZLu/+zNJzPfmz+2nVhjee3YJKeoWufW5wdhBBC6D4IIYTQfRBCCKH7IIQQQvdBCCGE7oMQQgjdByGEELoPws4Kj+d03qqwNxlvWU7OIb1GffELZQ0C2yUMbZwF3iphH0IIIXSeFeHoac2amDfAelaEnpiCNuYNsJ4doef5hxq81tfl2RLmQXiVIIQQQqmhlPJrpfIAJfkRA9OA6woHaVyKKOcB06+v+IcCzeX8pFWu3Qrj0vnIiSpMlsrJyifjE6oRlseo16i6rpAm/jHPU8/l9qjnV+ZpL8lYfoBzYXmAej6+/vodJ6vUCMsDIGw0CCHUrRJCCJsNQgh1q4QQwmZT9w8lgCr8aEpY7CZa+eypeDYh7K/mebOq13DCB8yNqxTCJ77GXSwNEK/hlK9ykTVJkjfn+JflUu3VigthKC66YFylEM6J/orJhZBfhHlkE6j+/UO5E2HdVRbCimvQnggv2ubz+lNC/fn4vxLqr9AKYbP9ga/Sd5Nwe7Gw6orl1xWmqylrWzELBIuIDbjf113lO1+lPA8WAzbs/ujR6jQhyvgnpZXTXHb2r/OIB1Ru/940ACGEEEIIIYQQQgghhBBCCCGEEEKoLf0H7PuVI8igTrsAAAAASUVORK5CYII=" 
-    alt="the dog is sleeping">
-    <p><h1 style="font-family:'Courier New', Courier, monospace;">my name is Nguyễn Việt Thắng
-        <br>
-        my class is E21CN01-B
-        <br>
-        This is my introduction page
-        <br>
-        and i have a song for you
-    </h1></p>
-    <iframe width="420" height="315" src="https://www.youtube.com/embed/LZqQLXlrhI4"> </iframe>
+<body>
+    <input type="number" id="StudentCount" placeholder="Nhập số lượng sinh viên">
+    <button onclick="createStudentForms()">Tạo form nhập sinh viên</button>
+    <button onclick="saveStudents()">Lưu thông tin sinh viên</button>
+    <button onclick="displayStudents()">Hiển thị thông tin sinh viên</button>
+    <div id="studentForms"></div>
+    <table id="studentTable"></table>
 
- </body>
+    <script>
+        var students = [];
+
+        function createStudentForms() {
+            var count = document.getElementById('StudentCount').value;
+            var forms = document.getElementById('studentForms');
+            forms.innerHTML = '';
+            for(let i = 0; i < count; i++) {
+                forms.innerHTML += `
+                    <h3>Sinh viên ${i + 1}</h3>
+                    Mã SV: <input type="text" id="id${i}"><br>
+                    Họ và tên: <input type="text" id="name${i}"><br>
+                    Ngày sinh: <input type="date" id="dob${i}"><br>
+                    Lớp: <input type="text" id="class${i}"><br>
+                    Điểm GPA: <input type="number" id="gpa${i}"><br>
+                `;
+            }
+        }
+
+        function saveStudents() {
+            var count = document.getElementById('StudentCount').value;
+            for(let i = 0; i < count; i++) {
+                var student = {
+                    id: document.getElementById('id' + i).value,
+                    name: document.getElementById('name' + i).value,
+                    dob: document.getElementById('dob' + i).value,
+                    class: document.getElementById('class' + i).value,
+                    gpa: document.getElementById('gpa' + i).value
+                };
+                students.push(student);
+            }
+            // Lưu danh sách sinh viên vào localStorage để có thể truy cập sau này
+            localStorage.setItem('students', JSON.stringify(students));
+        }
+
+        function displayStudents() {
+            var table = document.getElementById('studentTable');
+            table.innerHTML = '<tr><th>Mã SV</th><th>Họ và tên</th><th>Ngày sinh</th><th>Lớp</th><th>Điểm GPA</th></tr>';
+            for(let i = 0; i < students.length; i++) {
+                var student = students[i];
+                table.innerHTML += `<tr><td>${student.id}</td><td>${student.name}</td><td>${student.dob}</td><td>${student.class}</td><td>${student.gpa}</td></tr>`;
+            }
+        }
+    </script>
+</body>
 </html>
